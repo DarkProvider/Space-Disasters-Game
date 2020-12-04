@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Drawing;
+using Console = Colorful.Console;
 
 namespace Space_Disasters
 {
@@ -28,44 +32,57 @@ namespace Space_Disasters
 
 
 
-		//This will change the Console.writeline into Writeline instead
-			public static void Writeline(string text)
+			//This will change the Console.writeline into Writeline instead
+			public static void Writeline(string text, Color color)
 			{
 
-				Console.WriteLine(text);
+            Console.WriteLine(text, color);
+			}
+
+			public static void Write(string text, Color color)
+			{
+
+			Console.Write(text, color);
+
 			}
 
 
 
+		//This is a maximizing function which calls a special windows dll file to maximize the console
+		[DllImport("user32.dll")]
+		public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
 
-
+		private static void Maximize()
+		{
+			Process p = Process.GetCurrentProcess();
+			ShowWindow(p.MainWindowHandle, 3); //SW_MAXIMIZE = 3
+		}
 
 
 
 		static void GameTitle()
 		{
-				//Changes the height of the window
-				Console.WindowHeight = Console.LargestWindowHeight - 20;
-				//Changes the width of the window
-				Console.WindowWidth = Console.LargestWindowWidth - 80;
-				//Changes the color to blue!
-				Console.ForegroundColor = ConsoleColor.Blue;
+			//Call the maximizing funtion which has been added
+			Maximize();
+
+			//Changes the color to blue!
 				//Here is the ASCII title
-				Console.Title = "ASCII Art";
+				Console.Title = "Space Disaster - V1.0";
 
 			string title = @"
 
-       ::::::::  :::::::::     :::      ::::::::  ::::::::::      ::::::::: ::::::::::: ::::::::      :::      :::::::: ::::::::::: :::::::::: :::::::::  
-      :+:    :+: :+:    :+:  :+: :+:   :+:    :+: :+:             :+:    :+:    :+:    :+:    :+:   :+: :+:   :+:    :+:    :+:     :+:        :+:    :+: 
-      +:+        +:+    +:+ +:+   +:+  +:+        +:+             +:+    +:+    +:+    +:+         +:+   +:+  +:+           +:+     +:+        +:+    +:+ 
-      +#++:++#++ +#++:++#+ +#++:++#++: +#+        +#++:++#        +#+    +:+    +#+    +#++:++#++ +#++:++#++: +#++:++#++    +#+     +#++:++#   +#++:++#:  
-             +#+ +#+       +#+     +#+ +#+        +#+             +#+    +#+    +#+           +#+ +#+     +#+        +#+    +#+     +#+        +#+    +#+ 
-      #+#    #+# #+#       #+#     #+# #+#    #+# #+#             #+#    #+#    #+#    #+#    #+# #+#     #+# #+#    #+#    #+#     #+#        #+#    #+# 
-       ########  ###       ###     ###  ########  ##########      ######### ########### ########  ###     ###  ########     ###     ########## ###    ### 
 
-
+             ::::::::  :::::::::     :::      ::::::::  ::::::::::       ::::::::: ::::::::::: ::::::::      :::      :::::::: ::::::::::: :::::::::: :::::::::  
+            :+:    :+: :+:    :+:  :+: :+:   :+:    :+: :+:              :+:    :+:    :+:    :+:    :+:   :+: :+:   :+:    :+:    :+:     :+:        :+:    :+: 
+            +:+        +:+    +:+ +:+   +:+  +:+        +:+              +:+    +:+    +:+    +:+         +:+   +:+  +:+           +:+     +:+        +:+    +:+ 
+            +#++:++#++ +#++:++#+ +#++:++#++: +#+        +#++:++#         +#+    +:+    +#+    +#++:++#++ +#++:++#++: +#++:++#++    +#+     +#++:++#   +#++:++#:  
+                   +#+ +#+       +#+     +#+ +#+        +#+              +#+    +#+    +#+           +#+ +#+     +#+        +#+    +#+     +#+        +#+    +#+ 
+            #+#    #+# #+#       #+#     #+# #+#    #+# #+#              #+#    #+#    #+#    #+#    #+# #+#     #+# #+#    #+#    #+#     #+#        #+#    #+# 
+             ########  ###       ###     ###  ########  ##########       ######### ########### ########  ###     ###  ########     ###     ########## ###    ### 
 ";
-			Writeline(title);
+			Writeline(title, Color.Blue);
+
+			Writeline("", Color.White);
 
 			Copyrights();
 
@@ -101,14 +118,13 @@ namespace Space_Disasters
 		//Here is the game start code which calls for character and carrys on
 		static void StartGame()
 		{
-				Console.ForegroundColor = ConsoleColor.Blue;
-				Console.Write("Welcome ");
+				
+				Console.Write("Welcome ", Color.Blue);
 				Console.ResetColor();
-				Console.Write("user");
-				Console.ForegroundColor = ConsoleColor.Blue;
-				Console.Write(", to your first mission with the coalition of Nasa & SpaceX space organizations!\n");
+				Console.Write("user", Color.White);
+				Console.Write(", to your first mission with the coalition of Nasa & SpaceX space organizations!\n", Color.Blue);
 
-			Writeline("");
+			Writeline("", Color.White);
 			NameCharacter();
 			Choice();
 			EndGame();
@@ -124,14 +140,13 @@ namespace Space_Disasters
 		//Copyrights section
 		static void Copyrights()
 		{
-				//Sets the color to red
-				Console.ForegroundColor = ConsoleColor.Red;
-				//Prints out the owner's name which is me, basically..
-				string owner = "Owner: Yazan Al Akkad\n";
-				Console.WriteLine("{0," + ((Console.WindowWidth / 2) + owner.Length / 2) + "}", owner);
+			//Sets the color to red and prints out the owner's name which is me, basically..
+			string owner = "Owner: Yazan Al Akkad\n";
+				System.Console.ForegroundColor = ConsoleColor.Red;
+				System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + owner.Length / 2) + "}", owner);
 
 				//Changes the color to blue
-				Console.ForegroundColor = ConsoleColor.Blue;
+				//Console.ForegroundColor = ConsoleColor.Blue;
 				//Copyrights :D
 				string copy = "Copyrights reserved 2020 - 2021\n";
 				Console.WriteLine("{0," + ((Console.WindowWidth / 2) + copy.Length / 2) + "}", copy);
@@ -151,34 +166,27 @@ namespace Space_Disasters
 		static void NameCharacter()
 		{
 
-				Writeline("What would you like your name to be?\n");
+				Writeline("What would you like your name to be?\n", Color.Blue);
 
 				//Changes the color back to white
 				Console.ResetColor();
 
 				CharacterName = Console.ReadLine();
-			Writeline("");
+			Writeline("", Color.White);
 
-				//Changes the color to green
-				Console.ForegroundColor = ConsoleColor.Green;
 
-				Console.Write("Great! Nice to have you on board ");
-
-				//Displays the written name of a character in white
-				Console.ForegroundColor = ConsoleColor.White;
+				Console.Write("Great! Nice to have you on board ", Color.Green);
 
 				//Prints out the chosen name for the main character
-				Console.Write(CharacterName);
+				Console.Write(CharacterName, Color.White);
 
-				//Changes the color to green
-				Console.ForegroundColor = ConsoleColor.Green;
 
-				Writeline(", we are excited to have you here!\n");
+				Writeline(", we are excited to have you here!\n", Color.Blue);
 
 				//Resets the color again
 			Console.ResetColor();
 
-				Writeline("Press any key to continue!\n");
+				Writeline("Press any key to continue!\n", Color.Red);
 
 			//Waiting for key to be pressed
 			Console.ReadKey();
@@ -196,8 +204,6 @@ namespace Space_Disasters
 
 		static void Choice()
 		{
-				Console.ForegroundColor = ConsoleColor.Blue;
-
 			//Scenarios count and loop funtion
 			for (int scenario = 1; scenario <= Scenarios; scenario++)
 				{
@@ -208,92 +214,103 @@ namespace Space_Disasters
 				switch (scenario)
 				{
 					case 1:
-						//if scenario equals 1, statements run here
-						Console.ForegroundColor = ConsoleColor.Yellow;
-						Writeline(PartOne[0] + PartOne[1] + PartOne[2] + PartOne[3] + PartOne[4] + PartOne[5]);
+						Console.WriteLine(PartOne[0] + PartOne[1] + PartOne[2] + PartOne[3] + PartOne[4] + PartOne[5], Color.Yellow);
 
-						Console.ForegroundColor = ConsoleColor.Red;
+						Console.Write("Enter your choice: ", Color.Red);
 
-						Console.Write("Enter your choice: ");
-						
-						Console.ForegroundColor = ConsoleColor.White;
-						input = Console.ReadLine();
+						System.Console.ForegroundColor = ConsoleColor.White;
+						input = System.Console.ReadLine();
 						input = input.ToLower();
 						Console.ResetColor();
 		
 						if (input == "yes")
 							{
-							Console.ForegroundColor = ConsoleColor.Green;
-							Writeline(PartOne[6]);
+							Writeline(PartOne[6], Color.Green);
 							}
 							else
 							{
-							Console.ForegroundColor = ConsoleColor.Red;
-							Writeline(PartOne[7]);
+							Writeline(PartOne[7], Color.Red);
 							}
 						
-						Console.ForegroundColor = ConsoleColor.Yellow;
-						Writeline(PartOne[8] + PartOne[9] );
+						Console.WriteLine(PartOne[8] + PartOne[9], Color.Yellow );
 
-						Console.ForegroundColor = ConsoleColor.Red;
 
-						Console.Write("Enter your choice: ");
+						Console.Write("Enter your choice: ", Color.Red);
 
-						Console.ForegroundColor = ConsoleColor.White;
+						System.Console.ForegroundColor = ConsoleColor.White;
 						input = Console.ReadLine();
 						input = input.ToLower();
 						Console.ResetColor();
 
 						if (input == "yes")
 						{
-							Console.ForegroundColor = ConsoleColor.Yellow;
-							Writeline(PartOne[10] + PartOne[11]);
+							Console.WriteLine(PartOne[10] + PartOne[11], Color.Yellow);
 						}
 						else
 						{
-							Console.ForegroundColor = ConsoleColor.Red;
-							Writeline(PartOne[12]);
+
+							Console.WriteLine(PartOne[12], Color.Red);
 							
 						}
 
-						Writeline("");
+						Writeline("", Color.White);
 
-						Writeline("Press Enter to continue");
+						Writeline("Press Enter to continue", Color.Red);
 						break;
 					case 2:
 						
-						Console.ForegroundColor = ConsoleColor.Yellow;
-						Writeline(PartTwo[0] + PartTwo[1]);
+						Writeline(PartTwo[0] + PartTwo[1], Color.Yellow);
 
-						Console.ForegroundColor = ConsoleColor.Red;
+						Console.Write("Enter your choice: ", Color.Red);
 
-						Console.Write("Enter your choice: ");
-
-						Console.ForegroundColor = ConsoleColor.White;
+						System.Console.ForegroundColor = ConsoleColor.White;
 						input = Console.ReadLine();
 						input = input.ToLower();
 						Console.ResetColor();
 
 						if (input == "yes")
 						{
-							Console.ForegroundColor = ConsoleColor.Yellow;
-							Writeline(PartTwo[3]);
+							Writeline(PartTwo[3], Color.Yellow);
 						}
 						else
 						{
-							Console.ForegroundColor = ConsoleColor.Red;
-							Writeline(PartTwo[2]);
+							Writeline(PartTwo[2], Color.Red);
 						}
 
-						Console.ForegroundColor = ConsoleColor.Green;
-						Writeline(PartTwo[4]);
+						Writeline(PartTwo[4], Color.Green);
 
-						Writeline("");
+						Writeline("", Color.White);
 
-						Writeline("\nPress Enter to continue");
+						Writeline("\nPress Enter to continue", Color.Red);
 						break;
 					case 3:
-						//if scenario equals 3, statements run here  
+						
+						Writeline(PartThree[0], Color.Yellow);
+
+
+						Console.Write("Enter your choice: ", Color.Red);
+
+						System.Console.ForegroundColor = ConsoleColor.White;
+						input = Console.ReadLine();
+						input = input.ToLower();
+						Console.ResetColor();
+
+						if (input == "yes")
+						{
+							Writeline(PartThree[1], Color.Yellow);
+						}
+						else if (input == "no")
+						{
+							Writeline(PartThree[2], Color.Yellow);
+						}
+						
+
+						Writeline(PartThree[4], Color.Green);
+
+						Writeline("", Color.White);
+
+						Writeline("\nPress Enter to continue", Color.Red);
+
 						break;
 					default:
 						//if scenario does not match any above
@@ -327,7 +344,7 @@ namespace Space_Disasters
 
 		static string[] PartOne = {
 
-			"You have been launched into space for a mission. The launch seems to be going well until, it left the atmosphere of the Earth. \nThen problems start to occur slowly!\n",
+			"You have been launched into space for a mission. The launch seems to be going well until, it left the atmosphere of the Earth. \n\nThen problems start to occur slowly!\n",
 			"\nThe third stage of the rocket crashes into the space station before it could slow down for docking. ",
 			"You have now to find a way out of the crashed rocket \nto get to the malfunctioning station. The crash has caused you to hit your head and pass out.  \nYou will need to find something sharp that can break the glass.",
 			"\nYou wake up to see the tragedy, your other crew members sadly didn't survive the crash. \nYou will have to find your way out of the rocket to reach the station before you get hurt.",
@@ -365,7 +382,7 @@ namespace Space_Disasters
 
 			"\nThey provide you with some equipment and food so you can survive in space. You notice that the space station is in a bad shape and needs some repairs. \nDo you want to try to help repairing it? 1",
 			//First Yes
-			"You look around and see some tools and some spare parts laying around in the station, \nthey have been reserved for such situations. You put on the a space suit and tie yourself to the station with a special belt that would help you not get lost in space. \nYou get out of the space station and you take tools and spares with you, you float in space next to the station looking for the damages caused. A crew member gets out to help you fix the issues. \nYou find a hole in the space station which is causing a leak in the oxygen that is stored. The oxygen generator has also been effected by the crash which caused it to fail. \nDo you want to proceed with fixing the hole and the leak? 2",
+			"\n You look around and see some tools and some spare parts laying around in the station, \nthey have been reserved for such situations. You put on the a space suit and tie yourself to the station with a special belt that would help you not get lost in space. \nYou get out of the space station and you take tools and spares with you, you float in space next to the station looking for the damages caused. A crew member gets out to help you fix the issues. \nYou find a hole in the space station which is causing a leak in the oxygen that is stored. The oxygen generator has also been effected by the crash which caused it to fail. \nDo you want to proceed with fixing the hole and the leak? 2",
 			//First No
 			"You inform the crew that you can not help for some reason, \nbut you will however use some spare parts to build a small rocket to get to the moon base.",
 			"You get to a special place where a small rocket can be built and attached to the station. \nYou will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. \nDo you want to board it? 3",
@@ -414,7 +431,6 @@ namespace Space_Disasters
 		{
 			Console.Clear();
 
-			Console.ForegroundColor = ConsoleColor.Red;
 			string gameover = (@"
 
                                      ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ██╗
@@ -425,15 +441,19 @@ namespace Space_Disasters
                                      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝
                
 ");
-			Writeline(gameover);
+			Writeline(gameover, Color.Red);
 			
-			Console.ForegroundColor = ConsoleColor.Green;
+			//Here it will change the color and then cenetr the text
+			System.Console.ForegroundColor = ConsoleColor.Green;
 			string exit = "Thank you for playing. Now you can proceed by pressing the Enter button to Exit!";
-				Console.WriteLine("{0," + ((Console.WindowWidth / 2) + exit.Length / 2) + "}", exit);
+				System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + exit.Length / 2) + "}", exit);
 			string haveaniceday = "Have a great day!";
-				Console.WriteLine("{0," + ((Console.WindowWidth / 2) + haveaniceday.Length / 2) + "}", haveaniceday);
+				System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + haveaniceday.Length / 2) + "}", haveaniceday);
 
 			Console.ReadKey();
+
+			//Resturn back after loosing the game
+			StartGame();
 
 		}
 

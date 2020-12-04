@@ -10,3 +10,12 @@ J:\C# Console Game\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debu
 J:\C# Console Game\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.exe.config
 J:\C# Console Game\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.exe
 J:\C# Console Game\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.pdb
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.exe.config
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.exe
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Space Disasters.pdb
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debug\Space Disasters.csprojAssemblyReference.cache
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debug\Space Disasters.csproj.CoreCompileInputs.cache
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debug\Space Disasters.exe
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debug\Space Disasters.pdb
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\bin\Debug\Colorful.Console.dll
+C:\Users\alakk\Source\Repos\Space-Disasters-Game\Space Disasters\Space Disasters\obj\Debug\Space Disasters.csproj.CopyComplete
