@@ -23,33 +23,75 @@ namespace Space_Disasters
 		static void Main(string[] args)
 		{
 			//Prints out the game title and overview, then it proceeds to the next sections
-				GameTitle();
+			GameTitle();
 		}
 
 
 
 
+		//====================================================================================//
+		//Identifiers: 
 
+		//This will change the Console.writeline into Writeline instead
+		private static void Writeline(string text, Color color)
+		{
 
+			Console.WriteLine(text, color);
+		}
 
-			//This will change the Console.writeline into Writeline instead
-			public static void Writeline(string text, Color color)
-			{
-
-            Console.WriteLine(text, color);
-			}
-
-			public static void Write(string text, Color color)
-			{
+		private static void Write(string text, Color color)
+		{
 
 			Console.Write(text, color);
 
-			}
+		}
+
+		//Character name identifier
+		private static String CharacterName;
+
+		private static string input;
+
+
+		private static void AnswerInput() 
+		{
+
+			System.Console.ForegroundColor = ConsoleColor.White;
+			input = System.Console.ReadLine();
+			input = input.ToLower();
+			Console.ResetColor();
+		}
+
+		private static void EnterYourChoice() 
+		{
+
+			Write("Please enter your choice: ", Color.Red);
+
+		}
+
+		private static void PressEnter() 
+		{
+
+			Writeline("Press any key to continue!\n", Color.Red);
+
+
+		}
+
+		private static void ThanksMyDude() 
+		{
+
+			Writeline("Thank you for playing. Do you want to try again? Enter your answer below:\n", Color.Green);
+
+		}
 
 
 
-		//This is a maximizing function which calls a special windows dll file to maximize the console
-		[DllImport("user32.dll")]
+
+	//=========================================================================================//
+
+
+
+	//This is a maximizing function which calls a special windows dll file to maximize the console
+	[DllImport("user32.dll")]
 		public static extern bool ShowWindow(System.IntPtr hWnd, int cmdShow);
 
 		private static void Maximize()
@@ -97,16 +139,6 @@ namespace Space_Disasters
 			StartGame();
 		}
 
-
-
-
-
-
-
-
-
-		//Character name identifier
-		public static String CharacterName = "";
 
 
 
@@ -175,7 +207,7 @@ namespace Space_Disasters
 			Writeline("", Color.White);
 
 
-				Console.Write("Great! Nice to have you on board ", Color.Green);
+				Console.Write("Great! Nice to have you on board ", Color.Blue);
 
 				//Prints out the chosen name for the main character
 				Console.Write(CharacterName, Color.White);
@@ -186,7 +218,7 @@ namespace Space_Disasters
 				//Resets the color again
 			Console.ResetColor();
 
-				Writeline("Press any key to continue!\n", Color.Red);
+				PressEnter();
 
 			//Waiting for key to be pressed
 			Console.ReadKey();
@@ -209,38 +241,28 @@ namespace Space_Disasters
 				{
 
 
-			string input = "";
 
+				//Here it will run through all scenarios one by one 
 				switch (scenario)
 				{
 					case 1:
 						Console.WriteLine(PartOne[0] + PartOne[1] + PartOne[2] + PartOne[3] + PartOne[4] + PartOne[5], Color.Yellow);
 
-						Console.Write("Enter your choice: ", Color.Red);
+							EnterYourChoice();
+						AnswerInput();
 
-						System.Console.ForegroundColor = ConsoleColor.White;
-						input = System.Console.ReadLine();
-						input = input.ToLower();
-						Console.ResetColor();
-		
 						if (input == "yes")
 							{
 							Writeline(PartOne[6], Color.Green);
 							}
-							else
-							{
+						else
 							Writeline(PartOne[7], Color.Red);
-							}
+							
 						
 						Console.WriteLine(PartOne[8] + PartOne[9], Color.Yellow );
 
-
-						Console.Write("Enter your choice: ", Color.Red);
-
-						System.Console.ForegroundColor = ConsoleColor.White;
-						input = Console.ReadLine();
-						input = input.ToLower();
-						Console.ResetColor();
+							EnterYourChoice();
+						AnswerInput();
 
 						if (input == "yes")
 						{
@@ -250,23 +272,25 @@ namespace Space_Disasters
 						{
 
 							Console.WriteLine(PartOne[12], Color.Red);
+							Console.ReadKey();
+							EndGame();
 							
 						}
 
+						
 						Writeline("", Color.White);
-
-						Writeline("Press Enter to continue", Color.Red);
+						PressEnter();
+						Console.ReadKey();
+						
 						break;
 					case 2:
-						
+						Console.Clear();
+
 						Writeline(PartTwo[0] + PartTwo[1], Color.Yellow);
 
-						Console.Write("Enter your choice: ", Color.Red);
+							EnterYourChoice();
 
-						System.Console.ForegroundColor = ConsoleColor.White;
-						input = Console.ReadLine();
-						input = input.ToLower();
-						Console.ResetColor();
+						AnswerInput();
 
 						if (input == "yes")
 						{
@@ -280,63 +304,142 @@ namespace Space_Disasters
 						Writeline(PartTwo[4], Color.Green);
 
 						Writeline("", Color.White);
+						PressEnter();
+						Console.ReadKey();
 
-						Writeline("\nPress Enter to continue", Color.Red);
 						break;
 					case 3:
-						
+
+						Console.Clear();
+
 						Writeline(PartThree[0], Color.Yellow);
 
 
-						Console.Write("Enter your choice: ", Color.Red);
-
-						System.Console.ForegroundColor = ConsoleColor.White;
-						input = Console.ReadLine();
-						input = input.ToLower();
-						Console.ResetColor();
+						EnterYourChoice();
+						AnswerInput();
 
 						if (input == "yes")
 						{
 							Writeline(PartThree[1], Color.Yellow);
-						}
-						else if (input == "no")
-						{
-							Writeline(PartThree[2], Color.Yellow);
-						}
-						
 
-						Writeline(PartThree[4], Color.Green);
+							EnterYourChoice();
+							AnswerInput();
+
+							if (input == "yes")
+							{
+
+								Writeline(PartThree[4], Color.Green);
+
+							}
+							if (input == "no")
+							{
+
+								Writeline(PartThree[5], Color.Red);
+								PressEnter();
+								Console.ReadKey();
+								EndGame();
+
+							}
+						}
+						else
+							Writeline(PartThree[2], Color.Yellow);
+							
+						Writeline(PartThree[3], Color.Yellow);
+
+							EnterYourChoice();
+						AnswerInput();
+
+						if (input == "yes")
+						{
+							Writeline(PartThree[7], Color.Yellow);
+						}
+						else
+							Writeline(PartThree[9], Color.Red);
+
+
+						Writeline(PartThree[6], Color.Yellow);
+
+							EnterYourChoice();
+						AnswerInput();
+
+						if (input == "yes")
+						{
+
+							Writeline(PartThree[7], Color.Yellow);
+
+							EnterYourChoice();
+							AnswerInput();
+
+
+							if (input == "yes")
+							{
+
+								Writeline(PartThree[11] + PartThree[12], Color.Yellow);
+
+								PressEnter();
+								Console.ReadKey();
+
+								Writeline(PartThree[13], Color.Yellow);
+
+								PressEnter();
+								Console.ReadKey();
+								EndGame();
+
+							}
+
+							if (input == "no")
+							{
+
+								Writeline(PartThree[8], Color.Yellow);
+
+								PressEnter();
+								Console.ReadKey();
+								EndGame();
+
+
+							}
+						}
+
+						Write(PartThree[10], Color.Yellow);
+
+							EnterYourChoice();
+						AnswerInput();
+
+						if (input == "yes")
+						{
+
+							Writeline(PartThree[11] + PartThree[12], Color.Yellow);
+
+							PressEnter();
+							Console.ReadKey();
+							
+							Writeline(PartThree[13], Color.Yellow);
+							
+							PressEnter();
+							Console.ReadKey();
+							EndGame();
+						}
+						else
+							Write(PartThree[8], Color.Yellow);
+
+
+						Writeline(PartThree[11], Color.Yellow);
+						Writeline(PartThree[12], Color.Yellow);
+
+						Console.Clear();
+
+						Writeline(PartThree[13], Color.Yellow);
+
 
 						Writeline("", Color.White);
 
-						Writeline("\nPress Enter to continue", Color.Red);
+						PressEnter();
 
 						break;
 					default:
 						//if scenario does not match any above
 						break;
 				}
-
-				//Writeline(CharacterName + ", Which way do you wanna go? A or B?");
-
-				//Making an identifier that we can use later
-				//input = Console.ReadLine();
-
-				//Using that identifier to detect small case letters
-				//input = input.ToUpper();
-
-
-
-				//An if statemnent
-				//if (input == "A")
-				//{
-				//	Writeline("You've chosen A as a way to go!\n");
-				//}
-				//else
-				//{
-				//	Writeline("You've Chosen B as a way to go! You Lost!");
-				//}
-				Console.ReadKey();
 		}
 }
 
@@ -370,42 +473,42 @@ namespace Space_Disasters
 		static string[] PartTwo = {
 
 			"\nYou go back and open the first drawer and find some batteries. After that you keep looking for another way out. ",
-			"You find a safe, \nit is locked but can be unlocked with a special code. You need to look for the code! Turn the mirror around?\n",
+			"You find a safe, \nit is locked but can be unlocked with a special code. You need to look for the code! You see a mirror hanging on the wall, turn the mirror around?\n",
 			//No
-			"\nThe air pressure gets so low that you can't breath anymore \nwhich unfortunatly cause you a horrible death!\n",
+			"\nThe air pressure gets so low that you can't breath anymore which unfortunatly cause you a horrible death!\n",
 			//Yes
-			"\nYou see a code that can be used to open the safe. You open the safe with the code seen on the back side of the mirror. \nYou find a key to open the door of the room as well as a flashlight without batteries, pretty unfortunate huh? \nYou proceed with opening the door with the provided key and you put the previous found batteries in the flashlight. You turn on the flashlight, now you need to get out of the rocket \nseen that the air pressure is getting low and you don't time. You get out of the first room and see a blocked door, you also see a window \nby shining the flashlight around. The window is closed but can be opened so you attempt to open it, you open it \nand manage to get out of the rocket to the space station safe and sound!",
+			"\nYou see a code that can be used to open the safe. You open the safe with the code seen on the back side of the mirror. You find a key to open the door of the room as well as a flashlight without batteries, pretty unfortunate huh? \nYou proceed with opening the door with the provided key and you put the previous found batteries in the flashlight. You turn on the flashlight, now you need to get out of the rocket \nseen that the air pressure is getting low and you don't time. You get out of the first room and see a blocked door, you also see a window by shining the flashlight around. \nThe window is closed but can be opened so you attempt to open it, you open it and manage to get out of the rocket to the space station safe and sound!",
 			"\nYou meet with an ISS crew member which has thankfully survived alongside to another member which has barely made it.",
 		};
 
 		static string[] PartThree = {
 
-			"\nThey provide you with some equipment and food so you can survive in space. You notice that the space station is in a bad shape and needs some repairs. \nDo you want to try to help repairing it? 1",
+			"\nThey provide you with some equipment and food so you can survive in space. You notice that the space station is in a bad shape and needs some repairs. \nDo you want to try to help repairing it?",
 			//First Yes
-			"\n You look around and see some tools and some spare parts laying around in the station, \nthey have been reserved for such situations. You put on the a space suit and tie yourself to the station with a special belt that would help you not get lost in space. \nYou get out of the space station and you take tools and spares with you, you float in space next to the station looking for the damages caused. A crew member gets out to help you fix the issues. \nYou find a hole in the space station which is causing a leak in the oxygen that is stored. The oxygen generator has also been effected by the crash which caused it to fail. \nDo you want to proceed with fixing the hole and the leak? 2",
+			"\nYou look around and see some tools and some spare parts laying around in the station, they have been reserved for such situations. You put on a space suit and tie yourself to the station with \na special belt that would help you not getting lost in space. You get out of the space station and you take tools and spares with you, you float in space next to the station looking for the damages caused. \nA crew member gets out to help you fix the issues. You find a hole in the space station which is causing a leak in the oxygen that is stored. \nThe oxygen generator has also been effected by the crash which caused it to fail. Do you want to proceed with fixing the hole and the leak?\n",
 			//First No
-			"You inform the crew that you can not help for some reason, \nbut you will however use some spare parts to build a small rocket to get to the moon base.",
-			"You get to a special place where a small rocket can be built and attached to the station. \nYou will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. \nDo you want to board it? 3",
+			"You inform the crew that you can not help for some reason, but you will however use some spare parts to build a small rocket to get to the moon base.\n\n",
+			"You get to a special place where a small rocket can be built and attached to the station. You will need some materials for your rocket, so you go into the station and grab some spare parts. \nWhile picking up spare parts you notice that the station lacks some materials like metal, iron, copper and silicon. \n\nIn a distance you see a small space shuttle that can be used for gathering resources around from asteroids. Do you want to board it? \n",
 			//Second Yes
-			"You pickup some tools and some spare parts you found and fix the issues with them, you fix the issues and close down the hole and resolve the leak. The oxygen generator is now up and running again, good job!",
+			"\nYou pickup some tools and some spare parts you found and fix the issues with them, you fix the issues and close down the hole and resolve the leak. The oxygen generator is now up and running again, good job!\n",
 			//Second No
-			"The space station runs out of oxygen that causes the remaining crew members to suffocate",
+			"The space station runs out of oxygen that causes the remaining crew members to suffocate\n\n",
 			// followup to the latest issue fix
-			"You get to a special place where a small rocket can be built and attached to the station. \nYou will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts, \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. \nDo you want to board it? 3",
+			"You get to a special place where a small rocket can be built and attached to the station. You will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts, \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. \nDo you want to board it?\n",
 			//Third Yes
-			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. \nYou open the cabinet and find a key for the spacecraft, yey I guess! You take the space craft and fly around till you approach a big astroid. \nLand on top it with the space craft?",
+			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. \nYou open the cabinet and find a key for the spacecraft, yey I guess! You take the space craft and fly around till you approach a big astroid. Land on top of it with the space craft?",
 			//No 
-			"You skip it but you are going too far from the space station and the space craft is not \ncapable of going very far which causes it to shut down due to a communication loss. \nYou are now stuck in space! Game over!",
+			"You skip it but you are going too far from the space station and the space craft is not \ncapable of going very far, which causes it to shut down due to a communication loss. \nYou are now stuck in space! Game over!",
 			//Third No
-			"You look around or materials but you don't find anything, \ndo you want to go back and board the ship to get the needed materials?",
+			"You look around for materials but you don't find anything, \nyou go back to the spacecraft to board it so you get the needed materials but wait... ",
 			//Follow up
-			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. \nYou open the cabinet and find a key for the spacecraft, yey I guess! You take the space craft and fly around till you approach a big astroid. \nLand on top it with the space craft?",
+			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. \nYou open the cabinet and find a key for the spacecraft, yey I guess! You take the space craft and fly around till you approach a big astroid. Land on top of it with the space craft?",
 			//Yes
-			"You land on top it and get your tools to see if you can extract some resources. \nWith a camera system that works with infrared technology you detect that the asteroid is full of different resources and materials. \nYou get out your tools and begin extracting iron, copper and silicon. \nWith iron you can make metal plates which will help you build the rocket. You collect as much resources as you can. \nThen you go back to the space craft to get back to the station, you also take some samples with you to study on earth. \nYou start the ion thrusters engine and you go back to the station safe and sound. You now have enough materials to build the small rocket. \nYou pickup your items and begin assembling your rocket. You finish assembling and welding everything with each other. \nYou will now need a battery and some ION thrusters which you can find in the space station",
+			"You land on top it and get your tools to see if you can extract some resources. \nWith a camera system that works with infrared technology you detect that the asteroid is full of different resources and materials. \nYou get out your tools and begin extracting iron, copper and silicon. With iron you can make metal plates which will help you build the rocket. You collect as much resources as you can. \nThen you go back to the space craft to get back to the station, you also take some samples with you to study on earth. You start the ion thrusters engine and you go back to the station safe and sound. \nYou now have enough materials to build the small rocket. You pickup your items and begin assembling your rocket. You finish assembling and welding everything with each other. \nYou will now need a battery and some ION thrusters which you can find in the space station",
 			//Follow up
-			"Your rocket now is ready to go, you start it up after gather your things and you launch into space towards \nthe moon command base. From there you take another rocket after telling the command center about everything and you get launched towards the earth. \nYou land on the ocean surface, you send out a distress signal to the command center \non Earth which make them send a special boat to pick you up.",
+			"Your rocket now is ready to go, you start it up after gather your things and you launch into space towards \nthe moon command base. From there you take another rocket after telling the command center about everything and you get launched towards the earth. \nYou land on the ocean surface, you send out a distress signal to the command center on Earth which make them send a special boat to pick you up.",
 			//Follow up
-			"You now go back to the command center and tell them about the disaster that has occured while you were in space \nthe space disaster! You also give the the samples that you collected earlier and you had some other materials which you also gave \nas you don't need them. ",
+			"You now go back to the command center and tell them about the disaster that has occured while you were in space the space disaster! \nYou also give the the samples that you collected earlier and you had some other materials which you also gave as you don't need them. ",
 		};
 
 
@@ -441,20 +544,23 @@ namespace Space_Disasters
                                      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝
                
 ");
-			Writeline(gameover, Color.Red);
+			System.Console.ForegroundColor = ConsoleColor.Red;
+			System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + gameover.Length / 2) + "}", gameover);
 			
-			//Here it will change the color and then cenetr the text
-			System.Console.ForegroundColor = ConsoleColor.Green;
-			string exit = "Thank you for playing. Now you can proceed by pressing the Enter button to Exit!";
-				System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + exit.Length / 2) + "}", exit);
-			string haveaniceday = "Have a great day!";
-				System.Console.WriteLine("{0," + ((Console.WindowWidth / 2) + haveaniceday.Length / 2) + "}", haveaniceday);
+			//Thnking the player ofr playing and asks if he/she wants to play again!
+			ThanksMyDude();
+			AnswerInput();
 
-			Console.ReadKey();
+			//Resturn back after loosing or finishing the game
+			if (input == "yes")
+			{
 
-			//Resturn back after loosing the game
-			StartGame();
-
+				Console.ResetColor();
+				Console.Clear();
+				StartGame();
+			}
+			else
+				Environment.Exit(0);
 		}
 
 	}
