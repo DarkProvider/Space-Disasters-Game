@@ -265,9 +265,10 @@ namespace Space_Disasters
 							
 						
 						Console.WriteLine(PartOne[8] + PartOne[9], Color.Yellow );
-						Inventory.Add("Cabinet Key" + "Hammer");
+						Inventory.Add("Cabinet Key");
+						Inventory.Add("Hammer");
 
-							EnterYourChoice();
+						EnterYourChoice();
 							AnswerInput();
 
 						if (input == "yes")
@@ -302,7 +303,8 @@ namespace Space_Disasters
 						if (input == "yes")
 						{
 							Writeline(PartTwo[3], Color.Yellow);
-							Inventory.Add("Door key" + "Flashlight withour batteries");
+							Inventory.Add("Door key");
+							Inventory.Add("Flashlight withour batteries");
 						}
 						else
 						{
@@ -391,8 +393,11 @@ namespace Space_Disasters
 
 								Writeline(PartThree[11] + PartThree[12], Color.Yellow);
 
-								Inventory.Add("Spacecraft Keys" + "Remainings of iron, copper and silicon" + "Astroid samples");
-									PressEnter();
+								Inventory.Add("Spacecraft Keys");
+								Inventory.Add("Remainings of iron, copper and silicon");
+								Inventory.Add("Astroid samples");
+
+								PressEnter();
 									Console.ReadKey();
 
 								Writeline(PartThree[13], Color.Yellow);
@@ -432,9 +437,11 @@ namespace Space_Disasters
 
 							Writeline(PartThree[11] + PartThree[12], Color.Yellow);
 
-							Inventory.Add("Spacecraft Keys" + "Remainings of iron, copper and silicon" + "Astroid samples");
-								
-								PressEnter();
+							Inventory.Add("Spacecraft Keys");
+							Inventory.Add("Remainings of iron, copper and silicon");
+							Inventory.Add("Astroid samples");
+
+							PressEnter();
 								Console.ReadKey();
 							
 							
@@ -520,11 +527,11 @@ namespace Space_Disasters
 			//Second No
 			"The space station runs out of oxygen that causes the remaining crew members to suffocate\n\n",
 			// followup to the latest issue fix
-			"You get to a special place where a small rocket can be built and attached to the station. You will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts, \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. \nDo you want to board it?\n",
+			"You get to a special place where a small rocket can be built and attached to the station. You will need some materials for your rocket, so you go into the station and grab some spare parts. While picking up spare parts, \nyou notice that the station lacks some materials like metal, iron, copper and silicon. \nYou see a small space shuttle that can be used for gathering resources around from asteroids. Do you want to board it?\n",
 			//Third Yes
-			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. \nYou open the cabinet and find a key for the spacecraft, yey I guess! You take the space craft and fly around till you approach a big astroid. Land on top of it with the space craft?",
+			"You will need keys to be able to start the spacecraft, you look around and you see a cabinet. You open the cabinet and find a key for the spacecraft \nyey I guess! Now you board the space craft and fly around till you approach a big astroid. Land on top of it with the space craft?",
 			//No 
-			"You skip it but you are going too far from the space station and the space craft is not \ncapable of going very far, which causes it to shut down due to a communication loss. \nYou are now stuck in space! Game over!",
+			"You skip it but you are going too far from the space station and the space craft is not \ncapable of going very far, which causes it to shut down due to a communication loss. \n\nYou are now stuck in space! Game over!",
 			//Third No
 			"You look around for materials but you don't find anything, \nyou go back to the spacecraft to board it so you get the needed materials but wait... ",
 			//Follow up
@@ -560,19 +567,18 @@ namespace Space_Disasters
 			Console.Clear();
 
 			string YouwinTitle = (@"
-                ______                                       _            _                  _ 
-               / _____)                            _        | |      _   (_)                | |
-              | /      ___  ____   ____  ____ ____| |_ _   _| | ____| |_  _  ___  ____   ___| |
-              | |     / _ \|  _ \ / _  |/ ___) _  |  _) | | | |/ _  |  _)| |/ _ \|  _ \ /___)_|
-              | \____| |_| | | | ( ( | | |  ( ( | | |_| |_| | ( ( | | |__| | |_| | | | |___ |_ 
-               \______)___/|_| |_|\_|| |_|   \_||_|\___)____|_|\_||_|\___)_|\___/|_| |_(___/|_|
-                                 (_____|                                                       
+                                                        ____                            _         _       _   _                 _ 
+                                                       / ___|___  _ __   __ _ _ __ __ _| |_ _   _| | __ _| |_(_) ___  _ __  ___| |
+                                                      | |   / _ \| '_ \ / _` | '__/ _` | __| | | | |/ _` | __| |/ _ \| '_ \/ __| |
+                                                      | |__| (_) | | | | (_| | | | (_| | |_| |_| | | (_| | |_| | (_) | | | \__ \_|
+                                                       \____\___/|_| |_|\__, |_|  \__,_|\__|\__,_|_|\__,_|\__|_|\___/|_| |_|___(_)
+                                                                        |___/                                                                                                    
 ");
 			Writeline(YouwinTitle, Color.Green);
 
 			Writeline("You've made it to the base safe and sound!", Color.Green);
 
-			Writeline(CharacterName + " you have collected the following throughout your journey:\n\n", Color.Purple);
+			Writeline("\n\n" + CharacterName + " you have collected the following throughout your journey:\n\n", Color.Purple);
 			
 			//This will list the items in inventory
 			foreach (string item in Inventory)
@@ -582,10 +588,10 @@ namespace Space_Disasters
 			if (Inventory.Contains("Astroid samples"))
 			{
 
-				Writeline("\nGood job! You have collected the samples and returned them to the earth command base, now scientists can study them for future missions!", Color.AliceBlue);
+				Writeline("\n\nGood job! You have collected the samples and returned them to the earth command base, now scientists can study them for future missions!", Color.AliceBlue);
 			}
 			else
-				Writeline("You haven't gotten the smalples, scientists are big mad!", Color.MediumVioletRed);
+				Writeline("\n\nYou haven't gotten the smaples, scientists are big mad!\n\n", Color.MediumVioletRed);
 
 
 			//Thnking the player ofr playing and asks if he/she wants to play again!
