@@ -200,7 +200,7 @@ namespace Space_Disasters
 
         private static void AlternativeChoice()
         { 
-            Writeline(PartNine[0] + PartNine[1], Color.Yellow);
+            Writeline(PartNine[1], Color.Yellow);
 
                         EnterYourChoice();
                         AnswerInput();
@@ -216,20 +216,23 @@ namespace Space_Disasters
                             Console.Clear();
 
                         }
-                        else 
+                        else
+                        {
                             Writeline(PartEleven[0], Color.IndianRed);
                             Inventory.Clear();
                             PressEnter();
                             EndGame();
+                        }
+
         }
 
 
-        //=========================================================================================//
+                //=========================================================================================//
 
 
 
 
-        private static void GameTitle()
+                private static void GameTitle()
         {
             //Call the maximizing funtion which has been added
             Maximize();
@@ -526,6 +529,26 @@ namespace Space_Disasters
                             Writeline(PartFourteen[0], Color.Yellow);
                             Inventory.Add("Spacecraft Keys");
 
+                        EnterYourChoice();
+                        AnswerInput();
+
+                        if (input == "yes")
+                        {
+
+                            Writeline(PartSeventeen[0], Color.LightGreen);
+                            Inventory.Add("Astroid samples");
+                            Inventory.Add("Remainings of iron, copper and silicon");
+
+                        }
+                        else
+                        {
+                                //End of the game if the person loses, it will clear his/her inventory as he died
+                            Writeline(PartSixteen[0], Color.IndianRed);
+                            Inventory.Clear();
+                            PressEnter();
+                            EndGame();
+                        }
+
                         }
                         else
                         { 
@@ -659,7 +682,7 @@ namespace Space_Disasters
 
           "\nYou look around and see some tools and some spare parts laying around in the station, they have been reserved for such situations. You put on a space suit and tie yourself to the station with \na special belt that would help you not getting lost in space. You get out of the space station and you take tools and spares with you, you float in space next to the station looking for the damages caused. \nA crew member gets out to help you fix the issues. You find a hole in the space station which is causing a leak in the oxygen that is stored.",
 
-          "\nThe oxygen generator has also been badly effected by the crash which caused it to fail. Do you want to proceed with fixing the hole and the leak?\n",
+          "\n\nThe oxygen generator has also been badly effected by the crash which caused it to fail. Do you want to proceed with fixing the hole and the leak?\n",
 
         };
 
