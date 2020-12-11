@@ -8,29 +8,29 @@
 		  (Yes) First case :
           6- "\nYou find  some batteries",
 			//Follow up
-          8- "\nYou open the second drawer. ",
+          7- "\nYou open the second drawer. ",
 			//Yes
-		  9- "You find a key for the hammer cabinet. You take the key and go to the glass cabinet which holds the hammer. You take out the \nhammer and you go back to the emergency button and smash the glass cover. You proceed with pressing it and the door opens.",
+		  8- "You find a key for the hammer cabinet. You take the key and go to the glass cabinet which holds the hammer. You take out the \nhammer and you go back to the emergency button and smash the glass cover. You proceed with pressing it and the door opens.",
 
 		  
          (No) Second Case :
-          7- "\nKeep looking..",
+          9- "\nKeep looking..",
 
-          8- "\nYou open the second drawer. ",
+          10- "\nYou open the second drawer. ",
 			//Yes
-		  9- "You find a key for the hammer cabinet. You take the key and go to the glass cabinet which holds the hammer. You take out the \nhammer and you go back to the emergency button and smash the glass cover. You proceed with pressing it and the door opens.",
+		  11- "You find a key for the hammer cabinet. You take the key and go to the glass cabinet which holds the hammer. You take out the \nhammer and you go back to the emergency button and smash the glass cover. You proceed with pressing it and the door opens.",
          
-          10- "\nYou go back and open the first drawer and find some batteries. After that you keep looking for another way out. \n\n",
+          12- "\nYou go back and open the first drawer and find some batteries. After that you keep looking for another way out. \n\n",
 
 
           Followup for both cases:  
-          11- "\nNow you need to get out of the rocket seen the air pressure is getting low and you don't have much time. You look around and you find a blocked door \nit's blocked by a metal object, try pushing the object away?\n",
+          13- "\nNow you need to get out of the rocket seen the air pressure is getting low and you don't have much time. You look around and you find a blocked door \nit's blocked by a metal object, try pushing the object away?\n",
 			//Yes
 		  
           (Yes) First Case :
-          12- "\nYou can't seem to be able to push it, however it can be pushed with a strong item you look around and you find \na crowbar in a cabinet. You take the crowbar and ",
+          14- "\nYou can't seem to be able to push it, however it can be pushed with a strong item you look around and you find \na crowbar in a cabinet. You take the crowbar and ",
 			//Yes
-		  13- "you hold it against the metal object and manage to remove the object out of the way. \nYou manage to get out of the rocket to the space station safe and sound!",
+		  15- "you hold it against the metal object and manage to remove the object out of the way. \nYou manage to get out of the rocket to the space station safe and sound!",
 
 
         };
